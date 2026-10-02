@@ -9,7 +9,9 @@ from sklearn.metrics import (
     precision_score,
     recall_score,
     f1_score,
-    confusion_matrix
+    confusion_matrix,
+    roc_auc_score,
+    average_precision_score
 )
 
 
@@ -161,3 +163,20 @@ def plot_model_comparison(
         )
 
     plt.show()
+
+
+
+def calculate_probability_metrics(
+    y_true,
+    y_score
+) -> dict:
+    return {
+        "ROC-AUC": roc_auc_score(
+            y_true,
+            y_score
+        ),
+        "PR-AUC": average_precision_score(
+            y_true,
+            y_score
+        )
+    }
